@@ -1,5 +1,9 @@
 package com.zstu.servlets;
 
+import com.zstu.fruit.dao.FruitDAO;
+import com.zstu.fruit.dao.impl.FruitDAOImpl;
+import com.zstu.fruit.pojo.Fruit;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +30,10 @@ public class AddServlet extends HttpServlet {
         Integer fcount = Integer.parseInt(fcountStr);
         String remark = req.getParameter("remark");
 
-        System.out.println(fname);
-        System.out.println(price);
-        System.out.println(fcount);
-        System.out.println(remark);
+        FruitDAO fruitDAO = new FruitDAOImpl();
+        boolean flag = fruitDAO.addFruit(new Fruit(0 , fname , price , fcount , remark));
+
+        System.out.println(flag ? "添加成功！" : "添加失败！");
 
     }
 }
