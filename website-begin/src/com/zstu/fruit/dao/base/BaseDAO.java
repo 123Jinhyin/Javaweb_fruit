@@ -79,19 +79,26 @@ public abstract class BaseDAO<T> {
         boolean insertFlag = false ;
         insertFlag = sql.trim().toUpperCase().startsWith("INSERT");
         try {
+            //获取连接
             conn = getConn();
             if(insertFlag){
+                //如果是INSERT语句，返回第一个主键，主键回显
                 psmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             }else {
+                //如果不是，执行语句
                 psmt = conn.prepareStatement(sql);
             }
+            //设置statement参数
             setParams(psmt,params);
+            //执行语句获得count
             int count = psmt.executeUpdate() ;
 
+            //如果是INSERT语句，返回第一个主键的值
             rs = psmt.getGeneratedKeys();
             if(rs.next()){
                 return ((Long)rs.getLong(1)).intValue();
             }
+            //如果是其他语句，返回执行次数
             return count ;
         } catch (SQLException e) {
             e.printStackTrace();

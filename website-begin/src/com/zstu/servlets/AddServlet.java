@@ -23,6 +23,7 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.setCharacterEncoding("UTF-8");
         String fname = req.getParameter("fname");
         String priceStr = req.getParameter("price");
         Integer price = Integer.parseInt(priceStr);
