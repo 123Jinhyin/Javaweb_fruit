@@ -1,26 +1,24 @@
 package com.zstu.servlets;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Provider;
 
 /**
- * ClassName: SessionSerlet
+ * ClassName: SetDataServlet
  * Package: com.zstu.servlets
  * Description:
  *
  * @Author: ZSTU_JY
- * @Create: 2023/7/3 - 9:50
+ * @Create: 2023/7/3 - 11:12
  * @Version: v1.0
  */
-public class SessionServlet extends HelloServlet{
+public class SetDataServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //获取session,如果获取不到，则创建一个新的
-        HttpSession session = req.getSession();
-        System.out.println("session ID : " +  session.getId());
+        req.getSession().setAttribute("uname", "lina");
     }
 }

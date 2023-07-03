@@ -12,6 +12,15 @@
         <servlet-name>SessionServlet</servlet-name>
         <servlet-class>com.zstu.servlets.SessionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetDataServlet</servlet-name>
+        <servlet-class>com.zstu.servlets.SetDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetDataServlet</servlet-name>
+        <servlet-class>com.zstu.servlets.GetDataServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>AddServlet</servlet-name>
         <url-pattern>/add</url-pattern>
@@ -19,6 +28,14 @@
     <servlet-mapping>
         <servlet-name>SessionServlet</servlet-name>
         <url-pattern>/session</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetDataServlet</servlet-name>
+        <url-pattern>/setdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetDataServlet</servlet-name>
+        <url-pattern>/getdata</url-pattern>
     </servlet-mapping>
     <!--
     1.用户发请求，action=add
