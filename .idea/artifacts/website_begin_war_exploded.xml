@@ -12,6 +12,12 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="website-begin" />
+          <element id="module-output" name="Javaweb" />
+          <element id="module-output" name="fruit-thymeleaf" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/website-begin/src/main/webapp/WEB-INF/lib/druid-1.1.21.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/website-begin/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.27.jar" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -6,7 +6,6 @@
     <servlet>
         <servlet-name>AddServlet</servlet-name>
         <servlet-class>com.zstu.servlets.AddServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>SessionServlet</servlet-name>
