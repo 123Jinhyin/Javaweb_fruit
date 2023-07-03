@@ -20,6 +20,14 @@
         <servlet-name>GetDataServlet</servlet-name>
         <servlet-class>com.zstu.servlets.GetDataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <servlet-class>com.zstu.servlets.Demo01Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Demo02Servlet</servlet-name>
+        <servlet-class>com.zstu.servlets.Demo02Servlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AddServlet</servlet-name>
@@ -36,6 +44,14 @@
     <servlet-mapping>
         <servlet-name>GetDataServlet</servlet-name>
         <url-pattern>/getdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <url-pattern>/demo01</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Demo02Servlet</servlet-name>
+        <url-pattern>/demo02</url-pattern>
     </servlet-mapping>
     <!--
     1.用户发请求，action=add
