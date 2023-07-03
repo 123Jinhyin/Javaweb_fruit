@@ -22,5 +22,6 @@ public class SessionServlet extends HelloServlet{
         //获取session,如果获取不到，则创建一个新的
         HttpSession session = req.getSession();
         System.out.println("session ID : " +  session.getId());
+        session.setAttribute("uname", "lina");
     }
 }
