@@ -11,7 +11,7 @@
             <p class="center f30">欢迎使用水果库存后台管理系统</p>
             <table id="tbl_fruit">
                 <tr>
-                    <th>名称</th>
+                    <th>名称2</th>
                     <th>单价</th>
                     <th>库存</th>
                     <th>操作</th>
@@ -20,7 +20,7 @@
                     <td colspan="4">对不起，库存为空</td>
                 </tr>
                 <tr th:unless="${#lists.isEmpty(session.fruitList)}" th:each="fruit : ${session.fruitList}">
-                    <td th:text="${fruit.fname}">苹果</td>
+                    <td ><a th:text="${fruit.fname}" th:href="@{/edit.do(fid=${fruit.fid})}">苹果</a></td>
                     <td th:text="${fruit.price}">5</td>
                     <td th:text="${fruit.fcount}">20</td>
                     <td>删除</td>

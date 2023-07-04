@@ -94,11 +94,14 @@ public abstract class BaseDAO<T> {
             //执行语句获得count
             int count = psmt.executeUpdate() ;
 
-            //如果是INSERT语句，返回第一个主键的值
-            rs = psmt.getGeneratedKeys();
-            if(rs.next()){
-                return ((Long)rs.getLong(1)).intValue();
+            if(insertFlag){
+                //如果是INSERT语句，返回第一个主键的值
+                rs = psmt.getGeneratedKeys();
+                if(rs.next()){
+                    return ((Long)rs.getLong(1)).intValue();
+                }
             }
+
             //如果是其他语句，返回执行次数
             return count ;
         } catch (SQLException e) {
