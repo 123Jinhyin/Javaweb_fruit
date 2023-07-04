@@ -72,4 +72,18 @@ div{
 .f30{
     font-size: 30px;
 }
+.delImg{
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+}
+.inFont{
+    border: 0px solid red;
+    width: 60%;
+    margin-left: 20%;
+    text-align: right;
+}
+.delU{
+    text-decoration: none;
+}
 

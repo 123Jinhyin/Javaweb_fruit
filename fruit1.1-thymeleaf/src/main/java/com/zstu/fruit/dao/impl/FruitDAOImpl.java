@@ -42,4 +42,9 @@ public class FruitDAOImpl extends BaseDAO<Fruit> implements FruitDAO {
     public Fruit getFruitByFid(Integer fid) {
         return super.load("select * from t_fruit where fid = ?", fid);
     }
+
+    @Override
+    public void delFruitByFid(Integer fid) {
+        super.executeUpdate("delete from t_fruit where fid = ?", fid);
+    }
 }

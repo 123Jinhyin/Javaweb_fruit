@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>revise</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/edit.css">
 </head>
 <body>
 <div id="div_container">
     <div id="div_fruit_list">
-        <p class="center f30">编辑水果数据5</p>
+        <p class="center f30">编辑库存记录</p>
         <form th:action="@{/update.do}" method="post" th:object="${fruit }">
             <!--隐藏域 : 功能类似于文本框-->
             <input type="hidden" name="fid" th:value="*{fid}"/>

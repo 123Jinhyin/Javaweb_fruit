@@ -11,7 +11,7 @@ public interface FruitDAO {
     //新增库存
     boolean addFruit(Fruit fruit);
 
-    //修改库存
+    //修改指定的库存记录
     boolean updateFruit(Fruit fruit);
 
     //根据名称查询特定库存
@@ -20,6 +20,9 @@ public interface FruitDAO {
     //删除特定库存记录
     boolean delFruit(String fname);
 
-    //根据Fid获取水果信息
+    //根据Fid获取
     Fruit getFruitByFid(Integer fid);
+
+    //根据Fid删除指定的库存记录
+    void delFruitByFid(Integer fid);
 }
