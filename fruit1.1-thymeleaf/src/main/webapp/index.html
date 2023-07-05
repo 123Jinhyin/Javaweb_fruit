@@ -11,7 +11,12 @@
         <div id="div_fruit_list">
             <p class="center f30">欢迎使用水果库存后台管理系统</p>
             <div class="inFont">
-                <a th:href="@{/add.html}">添加新库存记录</a>
+                <form th:action="@{/index}" method="post" id="sea_from" >
+                    <input type="hidden" name="oper" value="search"/>
+                    请输入关键字：<input type="text" name="keyword" th:value="${session.keyword}"/>
+                    <input type="submit" value="查询" />
+                </form>
+                <a th:href="@{/add.html}" class="addFont">添加新库存记录</a>
             </div>
             <table id="tbl_fruit">
                 <tr>
