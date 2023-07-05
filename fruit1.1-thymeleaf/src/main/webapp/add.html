@@ -9,7 +9,9 @@
 <div id="div_container">
   <div id="div_fruit_list">
     <p class="center f30">添加库存记录</p>
-    <form action="add.do" method="post">
+    <form th:action="@{/fruit.do}" method="post">
+<!--    <form action="fruit.do" method="post">-->
+      <input type="hidden" name="operate" value="add"/>
       <table id="tbl_fruit">
         <tr>
           <th>名称:</th>

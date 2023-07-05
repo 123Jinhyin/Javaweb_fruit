@@ -11,12 +11,12 @@
         <div id="div_fruit_list">
             <p class="center f30">欢迎使用水果库存后台管理系统</p>
             <div class="inFont">
-                <form th:action="@{/index}" method="post" id="sea_from" >
+                <form th:action="@{/fruit.do}" method="post" id="sea_from" >
                     <input type="hidden" name="oper" value="search"/>
                     请输入关键字：<input type="text" name="keyword" th:value="${session.keyword}"/>
                     <input type="submit" value="查询" />
                 </form>
-                <a th:href="@{/add.html}" class="addFont">添加新库存记录</a>
+                <a th:href="@{/fruit.do(operate='to_add')}" class="addFont">添加新库存记录</a>
             </div>
             <table id="tbl_fruit">
                 <tr>
@@ -29,7 +29,7 @@
                     <td colspan="4">对不起，库存为空</td>
                 </tr>
                 <tr th:unless="${#lists.isEmpty(session.fruitList)}" th:each="fruit : ${session.fruitList}">
-                    <td ><a class="delU" th:text="${fruit.fname}" th:href="@{/edit.do(fid=${fruit.fid})}"></a></td>
+                    <td ><a class="delU" th:text="${fruit.fname}" th:href="@{/fruit.do(fid=${fruit.fid},operate='edit')}"></a></td>
                     <td th:text="${fruit.price}"></td>
                     <td th:text="${fruit.fcount}"></td>
                     <!--<td><img src="imgs/del.jpg" class="delImg" th:onclick="'delFruit('+${fruit.fid}+')'"/></td>-->
