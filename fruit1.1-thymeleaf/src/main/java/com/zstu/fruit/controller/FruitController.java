@@ -1,4 +1,4 @@
-package com.zstu.fruit.servlet;
+package com.zstu.fruit.controller;
 
 import com.zstu.fruit.dao.FruitDAO;
 import com.zstu.fruit.dao.impl.FruitDAOImpl;
@@ -6,12 +6,15 @@ import com.zstu.fruit.pojo.Fruit;
 import com.zstu.ssm.springmvc.ViewBaseServlet;
 import com.zstu.ssm.util.StringUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -24,44 +27,18 @@ import java.util.List;
  * @Version: v1.0
  */
 
-@WebServlet("/fruit.do")
-public class FruitServlet extends ViewBaseServlet {
+public class FruitController extends ViewBaseServlet {
+
+    private ServletContext servletContext;
+
+    public void setServletContext(ServletContext servletContext) throws ServletException {
+        this.servletContext = servletContext;
+        super.init(servletContext);
+    }
+
 
     private FruitDAO fruitDAO = new FruitDAOImpl();
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //设置编码
-        req.setCharacterEncoding("UTF-8");
-
-        String operate = req.getParameter("operate");
-        if(StringUtil.isEmpty(operate)) {
-            operate = "index";
-        }
-
-        switch (operate) {
-            case "index" :
-                index(req, resp);
-                break;
-            case "add" :
-                add(req, resp);
-                break;
-            case "del" :
-                del(req, resp);
-                break;
-            case "edit" :
-                edit(req, resp);
-                break;
-            case "update" :
-                update(req, resp);
-                break;
-            case "to_add" :
-                to_add(req, resp);
-                break;
-            default:
-                throw new RuntimeException("operate值非法！");
-        }
-    }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //设置编码

@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="website-begin" />
         <module name="fruit-thymeleaf" />
+        <module name="fruit1.1-thymeleaf" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fruit-thymeleaf" target="1.8" />
+      <module name="fruit1.1-thymeleaf" target="1.8" />
       <module name="website-begin" target="1.8" />
     </bytecodeTargetLevel>
   </component>

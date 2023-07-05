@@ -2,6 +2,7 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/fruit-thymeleaf" />
+    <file type="web" url="file://$PROJECT_DIR$/fruit1.1-thymeleaf" />
     <file type="web" url="file://$PROJECT_DIR$/website-begin" />
   </component>
   <component name="MavenProjectsManager">
@@ -9,6 +10,7 @@
       <list>
         <option value="$PROJECT_DIR$/website-begin/pom.xml" />
         <option value="$PROJECT_DIR$/fruit-thymeleaf/pom.xml" />
+        <option value="$PROJECT_DIR$/fruit1.1-thymeleaf/pom.xml" />
       </list>
     </option>
   </component>
