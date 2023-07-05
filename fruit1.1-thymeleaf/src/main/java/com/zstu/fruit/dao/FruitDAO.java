@@ -5,8 +5,11 @@ import com.zstu.fruit.pojo.Fruit;
 import java.util.List;
 
 public interface FruitDAO {
-    //查询库存列表
-    List<Fruit> getFruitList();
+    //查询指定页码上的库存列表，每页显示5条
+    List<Fruit> getFruitList(Integer pageNum);
+
+    //查询库存总记录条数
+    int getFruitCount();
 
     //新增库存
     boolean addFruit(Fruit fruit);

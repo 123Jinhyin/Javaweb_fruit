@@ -20,12 +20,12 @@ div{
 }
 #div_fruit_list{
     width: 100%;
-    border: 0px solid darkseagreen;
+    border: 0px solid red;
 }
 #tbl_fruit{
     width: 60%;
     line-height: 28px;
-    margin-top: 240px;
+    margin-top: 120px;
     margin-left: 20%;
 }
 #tbl_fruit, #tbl_fruit tr, #tbl_fruit th, #tbl_fruit td{
@@ -85,5 +85,11 @@ div{
 }
 .delU{
     text-decoration: none;
+}
+.pageButton{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 10px;
+    text-align: right;
 }
 
