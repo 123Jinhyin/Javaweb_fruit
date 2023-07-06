@@ -1,13 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="fruit1.1-thymeleaf:war exploded">
-    <output-path>$PROJECT_DIR$/fruit1.1-thymeleaf/target/fruit-thymeleaf-1.0-SNAPSHOT</output-path>
-    <properties id="maven-jee-properties">
-      <options>
-        <exploded>true</exploded>
-        <module>fruit1.1-thymeleaf</module>
-        <packaging>war</packaging>
-      </options>
-    </properties>
+    <output-path>$PROJECT_DIR$/out/artifacts/fruit1_1_thymeleaf_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -22,10 +15,7 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
         </element>
       </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/fruit1.1-thymeleaf/target/fruit-thymeleaf-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
-      </element>
-      <element id="javaee-facet-resources" facet="fruit1.1-thymeleaf/web/Web" />
+      <element id="javaee-facet-resources" facet="fruit1.2-mvc/web/Web" />
     </root>
   </artifact>
 </component>

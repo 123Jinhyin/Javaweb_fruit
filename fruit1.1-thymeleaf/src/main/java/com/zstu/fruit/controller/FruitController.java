@@ -6,15 +6,10 @@ import com.zstu.fruit.pojo.Fruit;
 import com.zstu.ssm.springmvc.ViewBaseServlet;
 import com.zstu.ssm.util.StringUtil;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -28,107 +23,55 @@ import java.util.List;
  */
 
 public class FruitController extends ViewBaseServlet {
-
-    private ServletContext servletContext;
-
-    public void setServletContext(ServletContext servletContext) throws ServletException {
-        this.servletContext = servletContext;
-        super.init(servletContext);
-    }
-
-
     private FruitDAO fruitDAO = new FruitDAOImpl();
-
-
-    private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //设置编码
-        req.setCharacterEncoding("utf-8");
-
-        //获取参数
-        String fidStr = req.getParameter("fid");
-        Integer fid = Integer.parseInt(fidStr);
-        String fname = req.getParameter("fname");
-        String priceStr = req.getParameter("price");
-        Integer price = Integer.parseInt(priceStr);
-        String fcountStr = req.getParameter("fcount");
-        Integer fcount = Integer.parseInt(fcountStr);
-        String remark = req.getParameter("remark");
-
+    
+    private String update(Integer fid, String fname, Integer price, Integer fcount, String remark) {
         //执行更新
         fruitDAO.updateFruit(new Fruit(fid, fname, price, fcount, remark));
-
         //资源跳转
         //super.processTemplate("index", req, resp);
         //req.getRequestDispatcher("index.html").forward(req, resp);
         //重定向，目的是重新给IndexServlet发请求，重新获取数据库数据
-        resp.sendRedirect("fruit.do");
+        return "redirect:fruit.do";
     }
-    private void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String fidStr = req.getParameter("fid");
-        if (StringUtil.isNotEmpty(fidStr)) {
-            int fid = Integer.parseInt(fidStr);
+    private String edit(Integer fid, HttpServletRequest req) {
+        if (fid != null) {
             Fruit fruit = fruitDAO.getFruitByFid(fid);
             req.setAttribute("fruit", fruit);
-            super.processTemplate("edit", req, resp);
+            //super.processTemplate("edit", req, resp);
+            return "edit";
         }
+        return "error";
     }
-    private void to_add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.processTemplate("add", req, resp);
+    private String to_add(HttpServletRequest req) {
+        return "add";
     }
-    private void del(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String fidStr = req.getParameter("fid");
-        if(StringUtil.isNotEmpty(fidStr)) {
-            int fid = Integer.parseInt(fidStr);
+    private String del(Integer fid, HttpServletRequest req) {
+        if(fid != null) {
             fruitDAO.delFruitByFid(fid);
+            return "redirect:fruit.do";
         }
-
-        resp.sendRedirect("fruit.do");
+        return "error";
     }
-    private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //设置编码
-        req.setCharacterEncoding("utf-8");
-
-        //获取参数
-        String fname = req.getParameter("fname");
-        String priceStr = req.getParameter("price");
-        Integer price = Integer.parseInt(priceStr);
-        String fcountStr = req.getParameter("fcount");
-        Integer fcount = Integer.parseInt(fcountStr);
-        String remark = req.getParameter("remark");
-
+    private String add(String fname, Integer price, Integer fcount, String remark) {
         Fruit fruit = new Fruit(0, fname, price, fcount, remark);
-
         fruitDAO.addFruit(fruit);
-
-        resp.sendRedirect("fruit.do");
+        return "redirect:fruit.do";
     }
-    private void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-        Integer pageNum = 1;
+    private String index(String oper, String keyword, Integer pageNum, HttpServletRequest req) throws ServletException {
         HttpSession session = req.getSession();
-
-        String oper = req.getParameter("oper");
+        
         //如果oper != null,说明 通过表单的查询按钮点击过来的
         //如果oper == null,说明 不是通过表单的查询按钮点击过来的
-
-        String keyword = null;
         if(StringUtil.isNotEmpty(oper) && "search".equals(oper)) {
-            //说明点击表单查询发送过来的请求
             //此时，pageNum应该还原为1， keyword应该从请求参数中获取
             pageNum = 1;
-            keyword = req.getParameter("keyword");
             if(StringUtil.isEmpty(keyword)) {
                 keyword = "";
             }
             session.setAttribute("keyword", keyword);
         }else {
-            //此处不是点击表单发送过来的请求
             //keyword从session作用域获取
-            String pageNumStr = req.getParameter("pageNum");
-            if(StringUtil.isNotEmpty(pageNumStr)) {
-                pageNum = Integer.parseInt(pageNumStr);
-            }
             Object keywordObj = session.getAttribute("keyword");
             if(keywordObj != null) {
                 keyword = (String) keywordObj;
@@ -136,22 +79,19 @@ public class FruitController extends ViewBaseServlet {
                 keyword = "";
             }
         }
-
+        //重新更新当前页的值
         session.setAttribute("pageNum", pageNum);
 
         FruitDAO fruitDAO = new FruitDAOImpl();
         List<Fruit> fruitList = fruitDAO.getFruitList(keyword, pageNum);
-        //保存到session作用域
-        session.setAttribute("fruitList", fruitList);
 
+        session.setAttribute("fruitList", fruitList);
+        //总记录条数
         int fruitCount = fruitDAO.getFruitCount(keyword);
+        //总页数
         int pageCount = (fruitCount + 5 - 1)/5;
         session.setAttribute("pageCount", pageCount);
-        //此处的视图名称是index
-        //那么thymeleaf会将这个逻辑视图名称对应到物理视图名称上去
-        //逻辑视图名称： index
-        //物理视图名称： view-prefix + 逻辑视图名称 + view-suffix
-        //所以真实的视图名称是： / + index + .html
-        super.processTemplate("index", req, resp);
+        
+        return "index";
     }
 }
